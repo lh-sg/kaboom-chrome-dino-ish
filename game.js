@@ -22,16 +22,23 @@ scene('game', (record) => {
     body(),
   ])
   
-  keyPress('space', () => { 
+  // keyPress('space', () => { 
+  //   if (mario.grounded()) {
+  //     mario.jump()
+  //   }
+  // })
+  // mouseClick(() => { 
+  //   if (mario.grounded()) {
+  //     mario.jump()
+  //   }
+  // })
+
+  onTouchStart(() => { 
     if (mario.grounded()) {
       mario.jump()
     }
   })
-  mouseClick(() => { 
-    if (mario.grounded()) {
-      mario.jump()
-    }
-  })
+
   mario.collides('tree', () => {
     addKaboom(mario.pos)
     shake()
