@@ -1,6 +1,11 @@
 import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs"
 
+var Width = document.documentElement.clientWidth;
+var Height = document.documentElement.clientHeight;
+
 kaboom({
+  width: Width,
+  height: Height,
   global: true,
   debug: true,
   background: [0,0,0,],
@@ -22,17 +27,16 @@ scene('game', (record) => {
     body(),
   ])
   
-  // keyPress('space', () => { 
-  //   if (mario.grounded()) {
-  //     mario.jump()
-  //   }
-  // })
-  // mouseClick(() => { 
-  //   if (mario.grounded()) {
-  //     mario.jump()
-  //   }
-  // })
-
+  keyPress('space', () => { 
+    if (mario.grounded()) {
+      mario.jump()
+    }
+  })
+  mouseClick(() => { 
+    if (mario.grounded()) {
+      mario.jump()
+    }
+  })
   onTouchStart(() => { 
     if (mario.grounded()) {
       mario.jump()
