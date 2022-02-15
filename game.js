@@ -130,6 +130,9 @@ scene('lose', (score, hiScore) => {
     mouseClick(() => {
       go('game', record)
     })
+    onTouchStart(() => {
+      go('game', record)
+    })
   })
 })
 
