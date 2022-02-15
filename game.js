@@ -1,23 +1,17 @@
 import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs"
 
-// var Width = document.documentElement.clientWidth;
-// var Height = document.documentElement.clientHeight;
-
 kaboom({
-  // width: Width,
-  // height: Height,
   global: true,
   debug: true,
-  background: [0,0,0,],
+  background: [134,135,247,],
 })
+
 loadRoot('https://i.imgur.com/')
 loadSprite('mario', 'Wb1qfhK.png')
-// loadSprite('mario', 'mario.png')
-
 
 scene('game', (record) => {
 
-  gravity(2400)
+  gravity(2000)
 
   const mario = add([
     sprite('mario'),
@@ -26,7 +20,7 @@ scene('game', (record) => {
     area(),
     body(),
   ])
-  
+
   keyPress('space', () => { 
     if (mario.grounded()) {
       mario.jump()
@@ -49,6 +43,7 @@ scene('game', (record) => {
     go('lose', score, hiScore)
   })
   
+  // Tree
   add([
     rect(width(), 48),
     pos(0, height() - 48),
@@ -75,6 +70,7 @@ scene('game', (record) => {
   }
   spawnTree()
 
+  // Score
   let score = 0
   const scoreLabel = add([
     text(score),
@@ -104,18 +100,19 @@ scene('game', (record) => {
   
 })
 
+// game over scene
 scene('lose', (score, hiScore) => {
   let record = hiScore
   add([
     sprite('mario'),
     pos(width() /2, height()/2-40),
-    scale(6),
+    scale(4),
     origin('center')
   ])
   add([
     text(score),
     pos(width()/2, height()/2 + 80),
-    scale(2),
+    scale(1),
     origin('center'),
   ])
   add([
@@ -123,6 +120,8 @@ scene('lose', (score, hiScore) => {
     origin('topright'),
     pos(width()-24,24),
   ])
+
+  // restart
   wait(1, () => {
     keyPress('space', () => {
       go('game', record)
