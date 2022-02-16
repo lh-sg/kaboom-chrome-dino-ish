@@ -84,7 +84,7 @@ scene('game', (record) => {
     hiScore = record
   }
   const hiScoreLabel = add([
-    text("Hi Score: " + hiScore),
+    text(hiScore),
     scale(0.5),
     origin('topright'),
     pos(width()-24,24),
@@ -95,7 +95,7 @@ scene('game', (record) => {
     scoreLabel.text = score
     if(score > hiScore) {
       hiScore = score
-      hiScoreLabel.text = "Hi Score: " + hiScore
+      hiScoreLabel.text = hiScore
     }
   })
   
@@ -117,7 +117,7 @@ scene('lose', (score, hiScore) => {
     origin('center'),
   ])
   add([
-    text("Hi Score: " + record),
+    text(record),
     origin('topright'),
     pos(width()-24,24),
   ])
