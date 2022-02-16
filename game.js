@@ -123,15 +123,18 @@ scene('lose', (score, hiScore) => {
   ])
 
   // restart
+  function gogame() {
+    go('game', record)
+  }
   wait(1, () => {
     keyPress('space', () => {
-      go('game', record)
+      gogame()
     })
     mouseClick(() => {
-      go('game', record)
+      gogame()
     })
     onTouchStart(() => {
-      go('game', record)
+      gogame()
     })
   })
 })
