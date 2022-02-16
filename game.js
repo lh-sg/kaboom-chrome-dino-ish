@@ -20,21 +20,21 @@ scene('game', (record) => {
     area(),
     body(),
   ])
+  
+  function mariojump() {
+    if (mario.grounded()) {
+      mario.jump()
+    }
+  }
 
   keyPress('space', () => { 
-    if (mario.grounded()) {
-      mario.jump()
-    }
+    mariojump()
   })
   mouseClick(() => { 
-    if (mario.grounded()) {
-      mario.jump()
-    }
+    mariojump()
   })
   onTouchStart(() => { 
-    if (mario.grounded()) {
-      mario.jump()
-    }
+    mariojump()
   })
 
   mario.collides('tree', () => {
@@ -75,6 +75,7 @@ scene('game', (record) => {
   const scoreLabel = add([
     text(score),
     scale(0.5),
+    origin('topleft'),
     pos(24,24),
   ])
 
@@ -83,7 +84,7 @@ scene('game', (record) => {
     hiScore = record
   }
   const hiScoreLabel = add([
-    text(hiScore),
+    text("Hi Score: " + hiScore),
     scale(0.5),
     origin('topright'),
     pos(width()-24,24),
@@ -94,7 +95,7 @@ scene('game', (record) => {
     scoreLabel.text = score
     if(score > hiScore) {
       hiScore = score
-      hiScoreLabel.text = hiScore
+      hiScoreLabel.text = "Hi Score: " + hiScore
     }
   })
   
@@ -116,7 +117,7 @@ scene('lose', (score, hiScore) => {
     origin('center'),
   ])
   add([
-    text(record),
+    text("Hi Score: " + record),
     origin('topright'),
     pos(width()-24,24),
   ])
